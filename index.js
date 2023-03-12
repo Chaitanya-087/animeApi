@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors')
 const { getAnimes, getAnimeDetails } = require('./scrape')
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 const app = express()
 
@@ -23,6 +26,4 @@ app.get('/api/v1/anime/:id/:name', async (req, res) => {
     res.send(response)
 })
 
-app.listen(5771, () => {
-    console.log('server running at 5771');
-})
+app.listen(parseInt(process.env.CONN) || 3000);
